@@ -24,7 +24,8 @@
 
 #include "BLEService.h"
 
-enum BLEDeviceEvent {
+enum BLEDeviceEvent
+{
   BLEConnected = 0,
   BLEDisconnected = 1,
   BLEDiscovered = 2,
@@ -36,7 +37,8 @@ class BLEDevice;
 
 typedef void (*BLEDeviceEventHandler)(BLEDevice device);
 
-class BLEDevice {
+class BLEDevice
+{
 public:
   BLEDevice();
   virtual ~BLEDevice();
@@ -50,12 +52,14 @@ public:
   virtual String address() const;
 
   bool hasLocalName() const;
-    
+  bool hasManufacturerData() const;
+
   bool hasAdvertisedServiceUuid() const;
   bool hasAdvertisedServiceUuid(int index) const;
   int advertisedServiceUuidCount() const;
 
   String localName() const;
+  String manufacturerData() const;
   String advertisedServiceUuid() const;
   String advertisedServiceUuid(int index) const;
 
@@ -63,27 +67,27 @@ public:
 
   bool connect();
   bool discoverAttributes();
-  bool discoverService(const char* serviceUuid);
+  bool discoverService(const char *serviceUuid);
 
   virtual operator bool() const;
-  virtual bool operator==(const BLEDevice& rhs) const;
-  virtual bool operator!=(const BLEDevice& rhs) const;
+  virtual bool operator==(const BLEDevice &rhs) const;
+  virtual bool operator!=(const BLEDevice &rhs) const;
 
   String deviceName();
   int appearance();
 
-  int serviceCount() const; 
-  bool hasService(const char* uuid) const;
-  bool hasService(const char* uuid, int index) const;
+  int serviceCount() const;
+  bool hasService(const char *uuid) const;
+  bool hasService(const char *uuid, int index) const;
   BLEService service(int index) const;
-  BLEService service(const char * uuid) const;
-  BLEService service(const char * uuid, int index) const;
+  BLEService service(const char *uuid) const;
+  BLEService service(const char *uuid, int index) const;
   int characteristicCount() const;
-  bool hasCharacteristic(const char* uuid) const;
-  bool hasCharacteristic(const char* uuid, int index) const;
+  bool hasCharacteristic(const char *uuid) const;
+  bool hasCharacteristic(const char *uuid, int index) const;
   BLECharacteristic characteristic(int index) const;
-  BLECharacteristic characteristic(const char * uuid) const;
-  BLECharacteristic characteristic(const char * uuid, int index) const;
+  BLECharacteristic characteristic(const char *uuid) const;
+  BLECharacteristic characteristic(const char *uuid, int index) const;
 
 protected:
   friend class ATTClass;
